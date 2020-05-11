@@ -1,0 +1,29 @@
+What is REST?
+	- a way of recovering after an exhausting day
+	- an architectural style for building distributed systems based on hypermedia. (correct)
+	- a set of functions and procedures allowing the creation of applications that access the features or data of an operating system, application, or other service.
+	- the language for describing the presentation of Web pages, including colors, layout, and fonts.
+	
+What is an API?
+	- an architectural style for building distributed systems based on hypermedia. 
+	- a set of functions and procedures allowing the creation of applications that access the features or data of an operating system, application, or other service. (correct)
+	- the language for describing the presentation of Web pages, including colors, layout, and fonts.
+	- Armor-Piercing Incendiary ammo
+	
+What are cookies used for? (select all correct answers)
+	- remembering stateful information for the stateless HTTP protocol (correct)
+	- session management (correct)
+	- personalization (correct)
+	- tracking (correct)
+	
+Select all the comments that will be viewable by the client:
+	- <!-- Comment --> (correct)
+	- /* Comment */ (correct)
+	- <%-- Comment --%>
+	- @* Comment *@
+	
+Which CSS takes precedence?
+	- inline (correct)
+	- internal
+	- external
+	- browser default

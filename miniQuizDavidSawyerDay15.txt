@@ -1,0 +1,29 @@
+Which is not true about the waterfall method?
+	- it places emphasis on documentation
+	- it progresses linearly through discrete, easily understandable and explainable phases.
+	- it is good at adapting to changing requirements. (correct)
+	- can reduce costs at later stages by designing things up front.
+	
+Select all the true statements about the Spiral model.
+	- the spiral is simply a sequence of waterfall increments. 
+	- all project activities follow a single spiral sequence.
+	- every activity in the diagram must be performed, and in the order shown.
+	- this model is good for Risk Handling (correct)
+	
+Which model would be best if the client doesn't know what they want?
+	- Big Bang Model (correct)
+	- V-Model 
+	- Waterfall Model
+	- Spiral Model
+	
+What would cause a problem in the Agile model?
+	- overcommunication of problems.
+	- too many changing requirements.
+	- lacking experienced resources to properly assess the effort required. (correct) 
+	- daily standup meetings.
+	
+Which is not a principle that underpins the empirical nature of scrum?
+	- Work Life Balance (correct)
+	- Transparency
+	- Inspection
+	- Adaptation 
