@@ -18,8 +18,10 @@ namespace MvcMovie.Models
         [DataType(DataType.Date)]
         public DateTime OrderDate { get; set; }
         public string Store { get; set; }
+        //public virtual Store Stores { get; set; }
         public string Item { get; set; }
+        //public virtual Item Items { get; set; }
         public string Customer { get; set; }
-
+        //public virtual Customer Customers { get; set; }
     }
 }
