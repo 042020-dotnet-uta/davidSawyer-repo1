@@ -41,10 +41,10 @@ namespace MvcMovie.Controllers
         {
             return $"From [HttpPost] Index Action Method: filtered on the substring, {searchString}";
         }
-        public IActionResult Add()
+/*        public IActionResult Add()
         {
             return View();
-        }
+        }*/
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -62,7 +62,7 @@ namespace MvcMovie.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> Edit(int? id)
+ /*       public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -75,7 +75,7 @@ namespace MvcMovie.Controllers
                 return NotFound();
             }
             return View(customer);
-        }
+        }*/
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Username,Password")] Customer customer)

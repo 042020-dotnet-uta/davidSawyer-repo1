@@ -49,5 +49,14 @@ namespace MvcMovie.Controllers
             }
             return View(store);
         }
+        public async Task<IActionResult> History(int? id)
+        {
+
+            // Create and execute raw SQL query.
+            string query = "SELECT * FROM Orders where Store = @p0";
+            var store = await _context.Stores.SqlQuery(query, id).SingleOrDefaultAsync();
+
+            return View(store);
+        }
     }
 }
