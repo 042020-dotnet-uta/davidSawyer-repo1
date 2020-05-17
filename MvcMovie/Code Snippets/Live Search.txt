@@ -1,0 +1,18 @@
+js
+
+function filter (element,what) {
+    var value = $(element).val();
+    value = value.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+        return letter.toUpperCase();
+    });
+
+    if (value == '') {
+        $(what+' > a > li').show();
+    }
+    else {
+        $(what + ' > a > li:not(:contains(' + value + '))').hide();
+        $(what + ' > a > li:contains(' + value + ')').show();
+    }
+};
+
+html

@@ -1,0 +1,51 @@
+﻿@model MvcMovie.Models.CustomerViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Customer List</h1>
+
+<p>
+    <a asp-action="Add">Add New Customer</a>
+</p>
+<form asp-controller="Customer" asp-action="Index" method="get">
+    <p>
+        Name: <input type="text" asp-for="SearchString">
+        <input type="submit" value="Filter">
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Customers[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customers[0].LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customers[0].Username)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Customers) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="item.Id">Edit</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -9,12 +9,10 @@ namespace Project_One.Models
     public class Orders
     {
         public int Id { get; set; }
-        // Locations ID
-        public Locations Locations;
-        // Customer ID
-        public Customers Customers;
-        // Item ID
-        public Items Items;
+        
+        public virtual Locations Locations { get; set; } // get location info
+        public virtual Customers Customers { get; set; } // get customer info
+        public virtual Items Items { get; set; } // get item info
         [DataType(DataType.Date)]
         public DateTime OrderDate { get; set; }
 
