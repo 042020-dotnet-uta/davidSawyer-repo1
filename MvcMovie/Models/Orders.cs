@@ -22,6 +22,11 @@ namespace MvcMovie.Models
         public string Item { get; set; }
         //public virtual Item Items { get; set; }
         public string Customer { get; set; }
+
+        public static implicit operator string(Order v)
+        {
+            throw new NotImplementedException();
+        }
         //public virtual Customer Customers { get; set; }
     }
 }

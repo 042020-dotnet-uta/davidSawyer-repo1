@@ -113,9 +113,12 @@ namespace MvcMovie.Controllers
 
             // Create and execute raw SQL query.
             string query = "SELECT * FROM Orders where Customer = @p0";
-            var customer = await _context.Orders.FromSqlRaw(query, id).SingleOrDefaultAsync();
 
-            return View(customer);
+            var customVM = new OrderViewModel
+            {
+                Customer = await _context.Orders.FromSqlRaw(query, id).SingleOrDefaultAsync()
+            };
+            return View(customVM);
         }
 
         private bool CustomerExists(int id)
