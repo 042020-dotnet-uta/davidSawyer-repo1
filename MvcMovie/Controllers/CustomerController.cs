@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,7 +13,7 @@ namespace MvcMovie.Controllers
     public class CustomerController : Controller
     {
         private readonly MvcMovieContext _context;
-
+        List<Order> Orders = new List<Order>();
         public CustomerController(MvcMovieContext context)
         {
             _context = context;
@@ -107,7 +108,15 @@ namespace MvcMovie.Controllers
             }
             return View(customer);
         }
+        public async Task<IActionResult> CustHist(int? id)
+        {
 
+            // Create and execute raw SQL query.
+            string query = "SELECT * FROM Orders where Customer = @p0";
+            var customer = await _context.Orders.FromSqlRaw(query, id).SingleOrDefaultAsync();
+
+            return View(customer);
+        }
 
         private bool CustomerExists(int id)
         {

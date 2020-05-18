@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,7 +13,7 @@ namespace MvcMovie.Controllers
     public class StoreController : Controller
     {
         private readonly MvcMovieContext _context;
-
+        List<Order> Orders = new List<Order>();
         public StoreController(MvcMovieContext context)
         {
             _context = context;
@@ -49,12 +50,12 @@ namespace MvcMovie.Controllers
             }
             return View(store);
         }
-        public async Task<IActionResult> History(int? id)
+        public async Task<IActionResult> StoreHist(int? id)
         {
 
             // Create and execute raw SQL query.
             string query = "SELECT * FROM Orders where Store = @p0";
-            var store = await _context.Stores.SqlQuery(query, id).SingleOrDefaultAsync();
+            var store = await _context.Orders.FromSqlRaw(query, id).SingleOrDefaultAsync();
 
             return View(store);
         }
