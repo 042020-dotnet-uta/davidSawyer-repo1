@@ -17,25 +17,26 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 #big {
-font-family: 'lobster', cursive;
-font-size: 1500%;
-  background: linear-gradient(#020024, #090979, #00d4ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    font-family: 'lobster', cursive;
+    font-size: 1500%;
+    background: linear-gradient(#020024, #090979, #00d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: -5%;
 }
 #sub{
-font-size: 750%;
-font-family: 'mulan', Times New Roman, serif;  
-line-height: 0px;
-text-align: right;
-text-color: #090979;
+    font-size: 750%;
+    font-family: 'mulan', Times New Roman, serif;  
+    line-height: 0px;
+    text-align: right;
+    text-color: #090979;
 }
 
 
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+      white-space: normal;
+      text-align: center;
+      word-break: break-all;
 }
 
 /* Provide sufficient contrast against white background */
@@ -94,12 +95,18 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background-color: #eefbfb;
+    background: rgb(225,225,255);
+    background: linear-gradient(0deg, rgba(225,225,255,1) 0%, rgba(225,255,255,1) 100%);
+    color: #002245;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
-  background-color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #001830;
+}
+.footer p{
+    color: white;
+}
