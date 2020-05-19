@@ -44,5 +44,18 @@ namespace MvcMovie.Controllers
             }
             return View(movie);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create([Bind("Id,OrderDate,Customer,Store,CartID")] Order order){
+            order.OrderDate = DateTime.Today;
+            //order.Cart.ID = last row +1
+            if (ModelState.IsValid)
+            {
+                _context.Add(order);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(order);
+        }
     }
 }
