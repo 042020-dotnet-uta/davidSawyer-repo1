@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Order\NewOrdar.cshtml" />
     <Content Remove="Views\Store\Inventory.cshtml" />
   </ItemGroup>
 
