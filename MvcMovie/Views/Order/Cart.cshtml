@@ -1,0 +1,24 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model ProjectOneV3.Models.Cart
+
+    <form>
+        <div class="form-group">
+            <p>Gadgets and Gizmos</p>
+            @Html.CheckBoxFor(m => m.ItemOneGet)
+            @Html.TextAreaFor(m => m.ItemOne)
+        </div>
+        <div class="form-group">
+            <p>Whozits and Whatzits</p>
+            @Html.CheckBoxFor(m => m.ItemTwoGet)
+            @Html.TextAreaFor(m => m.ItemTwo)
+        </div>
+        <div class="form-group">
+            <p>Thingamabobs</p>
+            @Html.CheckBoxFor(m => m.ItemThreeGet)
+            @Html.TextAreaFor(m => m.ItemThree)
+        </div>
+    </form>

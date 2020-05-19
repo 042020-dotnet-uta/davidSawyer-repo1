@@ -13,7 +13,7 @@ namespace MvcMovie.Controllers
     public class StoreController : Controller
     {
         private readonly MvcMovieContext _context;
-        List<Order> Orders = new List<Order>();
+        readonly List<Order> Orders = new List<Order>();
         public StoreController(MvcMovieContext context)
         {
             _context = context;
@@ -32,11 +32,11 @@ namespace MvcMovie.Controllers
 
             return View(storeVM);
         }
-        public IActionResult Inventory()
-        {
-            return View();
-        }
-        public async Task<IActionResult> Inventory(int? id)
+        //     public IActionResult Inventory()
+        //   {
+        //     return View();
+        //   }
+        public async Task<IActionResult> Inventory(string? id)
         {
             if (id == null)
             {
@@ -50,14 +50,20 @@ namespace MvcMovie.Controllers
             }
             return View(store);
         }
-        public async Task<IActionResult> StoreHist(int? id)
+        public async Task<IActionResult> StoreHist(string? id)
         {
 
             // Create and execute raw SQL query.
             string query = "SELECT * FROM Orders where Store = @p0";
-            var store = await _context.Orders.FromSqlRaw(query, id).SingleOrDefaultAsync();
-
-            return View(store);
+            var storeVM = new OrderViewModel
+            {
+                Stores = await _context.Orders.FromSqlRaw(query, id).SingleOrDefaultAsync()
+            };
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentException("Item not found: ", nameof(id));
+            }
+            return View(storeVM);
         }
     }
 }

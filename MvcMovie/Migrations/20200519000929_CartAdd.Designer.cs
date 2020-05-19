@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MvcMovie.Data;
 
 namespace MvcMovie.Migrations
 {
     [DbContext(typeof(MvcMovieContext))]
-    partial class MvcMovieContextModelSnapshot : ModelSnapshot
+    [Migration("20200519000929_CartAdd")]
+    partial class CartAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,9 +119,6 @@ namespace MvcMovie.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CartID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Customer")
                         .HasColumnType("nvarchar(max)");
 
@@ -133,8 +132,6 @@ namespace MvcMovie.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CartID");
 
                     b.ToTable("Orders");
                 });
@@ -184,13 +181,6 @@ namespace MvcMovie.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Carts");
-                });
-
-            modelBuilder.Entity("MvcMovie.Models.Order", b =>
-                {
-                    b.HasOne("ProjectOneV3.Models.Cart", "Cart")
-                        .WithMany()
-                        .HasForeignKey("CartID");
                 });
 #pragma warning restore 612, 618
         }

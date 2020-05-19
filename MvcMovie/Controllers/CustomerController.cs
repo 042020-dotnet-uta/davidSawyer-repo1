@@ -13,7 +13,7 @@ namespace MvcMovie.Controllers
     public class CustomerController : Controller
     {
         private readonly MvcMovieContext _context;
-        List<Order> Orders = new List<Order>();
+        readonly List<Order> Orders = new List<Order>();
         public CustomerController(MvcMovieContext context)
         {
             _context = context;
@@ -42,10 +42,10 @@ namespace MvcMovie.Controllers
         {
             return $"From [HttpPost] Index Action Method: filtered on the substring, {searchString}";
         }
-/*        public IActionResult Add()
-        {
-            return View();
-        }*/
+        /*        public IActionResult Add()
+                {
+                    return View();
+                }*/
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -63,20 +63,20 @@ namespace MvcMovie.Controllers
         {
             return View();
         }
- /*       public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        /*       public async Task<IActionResult> Edit(int? id)
+               {
+                   if (id == null)
+                   {
+                       return NotFound();
+                   }
 
-            var customer = await _context.Customers.FindAsync(id);
-            if (customer == null)
-            {
-                return NotFound();
-            }
-            return View(customer);
-        }*/
+                   var customer = await _context.Customers.FindAsync(id);
+                   if (customer == null)
+                   {
+                       return NotFound();
+                   }
+                   return View(customer);
+               }*/
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Username,Password")] Customer customer)
@@ -108,15 +108,21 @@ namespace MvcMovie.Controllers
             }
             return View(customer);
         }
-        public async Task<IActionResult> CustHist(int? id)
+        public async Task<IActionResult> CustHist(string? Customer)
         {
+            if (string.IsNullOrEmpty(Customer))
+            {
+                throw new ArgumentException("Customer value is null", nameof(Customer));
+            }
 
             // Create and execute raw SQL query.
-            string query = "SELECT * FROM Orders where Customer = @p0";
-
+                //var movies = from m in _context.Orders select m;
+                //movies = movies.Where(s => s.Customer.Contains(Customer));
+            string query = $"SELECT * FROM Orders where Customer = @p0";
             var customVM = new OrderViewModel
             {
-                Customer = await _context.Orders.FromSqlRaw(query, id).SingleOrDefaultAsync()
+                Customer = await _context.Orders.FromSqlRaw(query, Customer).SingleOrDefaultAsync()
+                //Customer = await movies.ToListAsync()
             };
             return View(customVM);
         }

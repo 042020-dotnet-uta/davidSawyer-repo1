@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using ProjectOneV3.Models;
 
 namespace MvcMovie.Models
 {
@@ -22,7 +23,7 @@ namespace MvcMovie.Models
         public string Item { get; set; }
         //public virtual Item Items { get; set; }
         public string Customer { get; set; }
-
+        public virtual Cart Cart { get; set; } //references the cart object
         public static implicit operator string(Order v)
         {
             throw new NotImplementedException();

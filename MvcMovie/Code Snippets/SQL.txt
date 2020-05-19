@@ -1,0 +1,45 @@
+ALTER TABLE [dbo].[Orders]
+DROP COLUMN [Item];
+
+INSERT Into [dbo].[Orders](
+[OrderDate],
+[Customer],
+[Store],
+[Item])
+VALUES
+(2018-11-11, "Ariel", "HC Andersen"),
+(2020-02-02, "Eric", "HC Andersen"),
+(2017-12-12, "Eric", "Musker & Clemonts"),
+(2019-01-01, "Ursula", "Musker & Clemonts"),
+(2015-05-05, "Ariel", "Walt D. Inc"),
+(2016-06-06, "Ursula", "Walt D. Inc");
+
+Select * from Orders where Customer = @item.Name
+Select * from Orders where Store = @item.Name
+
+
+CREATE TABLE Films
+(  
+    id INT NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY(id),   
+    Title VARCHAR(255)
+),  
+
+CREATE TABLE Genres
+(  
+    id INT NOT NULL AUTO_INCREMENT,   
+    PRIMARY KEY(id),  
+    Name VARCHAR(255)
+),
+
+
+CREATE TABLE Films_Genres
+(
+    film_id INT NOT NULL,  
+    genre_id INT NOT NULL,  
+    PRIMARY KEY (film_id, genre_id),  
+    FOREIGN KEY (film_id) REFERENCES Films(id) ON UPDATE CASCADE,  
+    FOREIGN KEY (genre_id) REFERENCES Genres(id) ON UPDATE CASCADE
+)  
+
+Atlantica's Abundance
