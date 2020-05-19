@@ -36,28 +36,28 @@ namespace MvcMovie.Controllers
         //   {
         //     return View();
         //   }
-        public async Task<IActionResult> Inventory(string? id)
+        public IActionResult Inventory(string? test)
         {
-            if (id == null)
+            if (test == null)
             {
                 return NotFound();
             }
 
-            var store = await _context.Stores.FindAsync(id);
+            var store = _context.Stores.Find(test);
             if (store == null)
             {
                 return NotFound();
             }
             return View(store);
         }
-        public async Task<IActionResult> StoreHist(string? id)
+        public IActionResult StoreHist(string? id)
         {
 
             // Create and execute raw SQL query.
             string query = "SELECT * FROM Orders where Store = @p0";
             var storeVM = new OrderViewModel
             {
-                Stores = await _context.Orders.FromSqlRaw(query, id).SingleOrDefaultAsync()
+                Stores = _context.Orders.FromSqlRaw(query, id).SingleOrDefault()
             };
             if (string.IsNullOrEmpty(id))
             {

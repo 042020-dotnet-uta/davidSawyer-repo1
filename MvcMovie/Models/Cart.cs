@@ -8,11 +8,11 @@ namespace ProjectOneV3.Models
     public class Cart
     {
         public int ID { get; set; }    
-        public string ItemOne { get; set; }
+        public int ItemOne { get; set; }
         public bool ItemOneGet { get; set; }
-        public string ItemTwo { get; set; }
+        public int ItemTwo { get; set; }
         public bool ItemTwoGet { get; set; }
-        public string ItemThree { get; set; }
+        public int ItemThree { get; set; }
         public bool ItemThreeGet { get; set; }
     }
 }

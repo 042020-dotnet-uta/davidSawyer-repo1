@@ -108,20 +108,20 @@ namespace MvcMovie.Controllers
             }
             return View(customer);
         }
-        public async Task<IActionResult> CustHist(string? Customer)
+        public IActionResult CustHist(string? id)
         {
-            if (string.IsNullOrEmpty(Customer))
+            if (string.IsNullOrEmpty(id))
             {
-                throw new ArgumentException("Customer value is null", nameof(Customer));
+                throw new ArgumentException("Customer value is null", nameof(id));
             }
 
             // Create and execute raw SQL query.
                 //var movies = from m in _context.Orders select m;
                 //movies = movies.Where(s => s.Customer.Contains(Customer));
-            string query = $"SELECT * FROM Orders where Customer = @p0";
+            string query = "SELECT * FROM Orders where Customer = @p0";
             var customVM = new OrderViewModel
             {
-                Customer = await _context.Orders.FromSqlRaw(query, Customer).SingleOrDefaultAsync()
+                Customer = _context.Orders.FromSqlRaw(query, id).SingleOrDefault()
                 //Customer = await movies.ToListAsync()
             };
             return View(customVM);
