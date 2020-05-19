@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Models;
+using ProjectOneV3.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,19 +37,35 @@ namespace MvcMovie.Controllers
         //   {
         //     return View();
         //   }
-        public IActionResult Inventory(string? test)
+        public IActionResult StoreInv(string? test)
         {
             if (test == null)
             {
                 return NotFound();
             }
-
-            var store = _context.Stores.Find(test);
-            if (store == null)
+            string query = "SELECT * FROM Items where Store = @p0";
+            var storeVM = new ItemListViewModel
+            {
+                Items = _context.Items.FromSqlRaw(query, test).ToList()
+            };
+            if (string.IsNullOrEmpty(test))
+            {
+                throw new ArgumentException("Item not found: ", nameof(test));
+            }
+            return View(storeVM);
+        }
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
             {
                 return NotFound();
             }
-            return View(store);
+            var movie =  _context.Carts.FirstOrDefault(m => m.ID == id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+            return View(movie);
         }
         public IActionResult StoreHist(string? id)
         {
@@ -57,7 +74,7 @@ namespace MvcMovie.Controllers
             string query = "SELECT * FROM Orders where Store = @p0";
             var storeVM = new OrderViewModel
             {
-                Stores = _context.Orders.FromSqlRaw(query, id).SingleOrDefault()
+                Orders = _context.Orders.FromSqlRaw(query, id).ToList()
             };
             if (string.IsNullOrEmpty(id))
             {

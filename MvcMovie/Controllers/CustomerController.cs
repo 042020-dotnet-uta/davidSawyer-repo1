@@ -63,20 +63,19 @@ namespace MvcMovie.Controllers
         {
             return View();
         }
-        /*       public async Task<IActionResult> Edit(int? id)
-               {
-                   if (id == null)
-                   {
-                       return NotFound();
-                   }
-
-                   var customer = await _context.Customers.FindAsync(id);
-                   if (customer == null)
-                   {
-                       return NotFound();
-                   }
-                   return View(customer);
-               }*/
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var movie = _context.Carts.FirstOrDefault(m => m.ID == id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+            return View(movie);
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Username,Password")] Customer customer)
@@ -121,7 +120,7 @@ namespace MvcMovie.Controllers
             string query = "SELECT * FROM Orders where Customer = @p0";
             var customVM = new OrderViewModel
             {
-                Customer = _context.Orders.FromSqlRaw(query, id).SingleOrDefault()
+                Orders = _context.Orders.FromSqlRaw(query, id).ToList()
                 //Customer = await movies.ToListAsync()
             };
             return View(customVM);

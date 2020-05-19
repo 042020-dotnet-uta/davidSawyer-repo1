@@ -37,9 +37,7 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
-
-            var movie = _context.Movie
-                .FirstOrDefault(m => m.Id == id);
+            var movie = _context.Carts.FirstOrDefault(m => m.ID == id);
             if (movie == null)
             {
                 return NotFound();

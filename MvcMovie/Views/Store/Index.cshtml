@@ -22,7 +22,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                <a asp-action="Inventory" asp-route-test="@item.Name">View Inventory</a> | 
+                <a asp-action="StoreInv" asp-route-test="@item.Name">View Inventory</a> | 
                 <a asp-action="StoreHist" asp-route-id="@item.Name">View Order History</a>
             </td>
         </tr>
