@@ -32,6 +32,12 @@ namespace MvcMovie.Controllers
 
             return View(orderVM);
         }
+        [HttpGet]
+        public IActionResult Details()
+        {
+            return View();
+        }
+        [HttpPost]
         public IActionResult Details(int? id)
         {
             if (id == null)

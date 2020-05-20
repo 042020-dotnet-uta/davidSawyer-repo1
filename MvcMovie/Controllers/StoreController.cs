@@ -53,6 +53,12 @@ namespace MvcMovie.Controllers
             }
             return View(storeVM);
         }
+        [HttpGet]
+        public IActionResult Details()
+        {
+            return View();
+        }
+        [HttpPost]
         public IActionResult Details(int? id)
         {
             if (id == null)

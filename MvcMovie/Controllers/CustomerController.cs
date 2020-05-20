@@ -69,17 +69,19 @@ namespace MvcMovie.Controllers
             }
             return View(customer);
         }
-        public IActionResult Edit()
+        [HttpGet]
+        public IActionResult Details()
         {
             return View();
         }
+        [HttpPost]
         public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var movie = _context.Orders.FirstOrDefault(m => m.Id == id);
+            var movie = _context.Orders.SingleOrDefault(m => m.Id == id);
             if (movie == null)
             {
                 return NotFound();
