@@ -49,12 +49,12 @@ namespace MvcMovie.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Add([Bind("Id,FirstName,LastName,Username,Password")] Customer customer)
+        public IActionResult Add([Bind("Id,FirstName,LastName,Username,Password")] Customer customer)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(customer);
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             return View(customer);
