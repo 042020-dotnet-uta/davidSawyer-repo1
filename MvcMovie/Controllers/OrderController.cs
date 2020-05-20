@@ -48,16 +48,17 @@ namespace MvcMovie.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("OrderDate, Store, Item1, Item2, Item3, Customer")] Order order){
             IQueryable<string> genreQuery = from m in _context.Stores orderby m.Name select m.Name;
             var Locales = new OrderViewModel
             {
                 Locales = new SelectList(genreQuery.Distinct().ToList())
             };
+            return View(Locales);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create([Bind("OrderDate, Store, Item1, Item2, Item3, Customer")] Order order){
+            
                      
             order.OrderDate = DateTime.Today;
             if (ModelState.IsValid)
