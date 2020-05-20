@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using ProjectOneV3.Models;
 using System;
 using System.Collections.Generic;
 
@@ -9,9 +8,11 @@ namespace MvcMovie.Models
     {
         public List<Order> Orders { get; set; }
         public SelectList Locales { get; set; }
-        public string Stores { get; set; }
+        public string Store { get; set; }
+        public int Item1 { get; set; }
+        public int Item2 { get; set; }
+        public int Item3 { get; set; }
         public DateTime OrderDate { get; set; }
         public string Customer { get; set; }
-        public Cart Cart { get; set; }
     }
 }

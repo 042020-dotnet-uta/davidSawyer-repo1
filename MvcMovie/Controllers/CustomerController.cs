@@ -69,7 +69,7 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
-            var movie = _context.Carts.FirstOrDefault(m => m.ID == id);
+            var movie = _context.Orders.FirstOrDefault(m => m.Id == id);
             if (movie == null)
             {
                 return NotFound();
@@ -115,8 +115,8 @@ namespace MvcMovie.Controllers
             }
 
             // Create and execute raw SQL query.
-                //var movies = from m in _context.Orders select m;
-                //movies = movies.Where(s => s.Customer.Contains(Customer));
+            //var movies = from m in _context.Orders select m;
+            //movies = movies.Where(s => s.Customer.Contains(Customer));
             string query = "SELECT * FROM Orders where Customer = @p0";
             var customVM = new OrderViewModel
             {

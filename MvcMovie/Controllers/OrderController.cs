@@ -37,7 +37,7 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
-            var movie = _context.Carts.FirstOrDefault(m => m.ID == id);
+            var movie = _context.Orders.FirstOrDefault(m => m.Id == id);
             if (movie == null)
             {
                 return NotFound();
@@ -46,9 +46,8 @@ namespace MvcMovie.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,OrderDate,Customer,Store,CartID")] Order order){
+        public IActionResult Create([Bind("Id,OrderDate,Customer,Store,Item1,Item2,Item3")] Order order){
             order.OrderDate = DateTime.Today;
-            //order.Cart.ID = last row +1
             if (ModelState.IsValid)
             {
                 _context.Add(order);

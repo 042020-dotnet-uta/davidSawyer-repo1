@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Models;
-using ProjectOneV3.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,7 +59,7 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
-            var movie =  _context.Carts.FirstOrDefault(m => m.ID == id);
+            var movie = _context.Orders.FirstOrDefault(m => m.Id == id);
             if (movie == null)
             {
                 return NotFound();
@@ -69,7 +68,6 @@ namespace MvcMovie.Controllers
         }
         public IActionResult StoreHist(string? id)
         {
-
             // Create and execute raw SQL query.
             string query = "SELECT * FROM Orders where Store = @p0";
             var storeVM = new OrderViewModel

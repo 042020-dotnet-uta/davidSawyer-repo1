@@ -18,10 +18,13 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\HelloWorldController.cs" />
+    <Compile Remove="Migrations\20200519233540_ResetCart.cs" />
+    <Compile Remove="Migrations\20200519233540_ResetCart.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Remove="Views\Order\NewOrdar.cshtml" />
+    <Content Remove="Views\Store\History.cshtml" />
     <Content Remove="Views\Store\Inventory.cshtml" />
   </ItemGroup>
 

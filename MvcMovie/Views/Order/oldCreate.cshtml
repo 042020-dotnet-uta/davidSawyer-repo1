@@ -4,36 +4,22 @@
     ViewData["Title"] = "Create";
 }
 
-<h4>New Order</h4>
+<h1>Create</h1>
+
+<h4>Order</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="OrderDate" class="control-label"></label>
                 <span id="datetime"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Store" class="control-label"></label>
+                <label asp-for="Store" class="control-label">Store</label>
                 <select asp-for="Store" asp-items="Model.Locales">
-                    <option value=""></option>
+                <option value=""></option>
                 </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Item1" class="control-label">Gadgets and Gizmos</label>
-                <input asp-for="Item1" class="form-control" />
-                <span asp-validation-for="Item1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Item2" class="control-label">Whozits and Whatzits</label>
-                <input asp-for="Item2" class="form-control" />
-                <span asp-validation-for="Item2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Item3" class="control-label">Thingamabobs</label>
-                <input asp-for="Item3" class="form-control" />
-                <span asp-validation-for="Item3" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Customer" class="control-label"></label>
@@ -50,8 +36,10 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
 <script>
     var dt = new Date();
     document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
 </script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

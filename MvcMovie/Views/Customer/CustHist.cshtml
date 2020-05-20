@@ -1,14 +1,9 @@
 ﻿@model MvcMovie.Models.OrderViewModel
-
 @{
     ViewData["Title"] = "CustHist";
 }
+<h1>@Html.DisplayFor(model => model.Orders[0].Customer)'s Customer History</h1>
 
-    <h1>@Html.DisplayFor(model => model.Orders[0].Customer)'s Customer History</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -18,9 +13,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Orders[0].Store)
             </th>
-            <th>
-              @Html.DisplayNameFor(model => model.Orders[0].Item)
-          </th>
             <th></th>
         </tr>
     </thead>
