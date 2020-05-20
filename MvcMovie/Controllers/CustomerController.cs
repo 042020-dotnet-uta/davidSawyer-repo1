@@ -59,7 +59,7 @@ namespace MvcMovie.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Add([Bind("FirstName","LastName","Username","Password")] Customer customer)
         {
-            string Message = $"About page visited at {DateTime.UtcNow.ToLongTimeString()}";
+            string Message = $"Successful page visit at {DateTime.UtcNow.ToLongTimeString()}";
             _logger.LogInformation(Message);
             if (ModelState.IsValid)
             {

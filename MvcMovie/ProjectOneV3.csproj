@@ -8,18 +8,25 @@
   <ItemGroup>
     <Compile Remove="Code Snippets\**" />
     <Compile Remove="Views\HelloWorld\**" />
+    <Compile Remove="Views\Movies\**" />
     <Content Remove="Code Snippets\**" />
     <Content Remove="Views\HelloWorld\**" />
+    <Content Remove="Views\Movies\**" />
     <EmbeddedResource Remove="Code Snippets\**" />
     <EmbeddedResource Remove="Views\HelloWorld\**" />
+    <EmbeddedResource Remove="Views\Movies\**" />
     <None Remove="Code Snippets\**" />
     <None Remove="Views\HelloWorld\**" />
+    <None Remove="Views\Movies\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="Controllers\HelloWorldController.cs" />
+    <Compile Remove="Controllers\MoviesController.cs" />
     <Compile Remove="Migrations\20200519233540_ResetCart.cs" />
     <Compile Remove="Migrations\20200519233540_ResetCart.Designer.cs" />
+    <Compile Remove="Models\Movie.cs" />
+    <Compile Remove="Models\MovieGenreViewModel.cs" />
   </ItemGroup>
 
   <ItemGroup>
