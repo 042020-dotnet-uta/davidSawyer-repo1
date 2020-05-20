@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Models;
@@ -12,14 +13,14 @@ namespace MvcMovie.Controllers
     public class OrderController : Controller
     {
         private readonly MvcMovieContext _context;
-
+        
         public OrderController(MvcMovieContext context)
         {
             _context = context;
         }
+        
         public async Task<IActionResult> Index()
         {
-            
             IQueryable<int> genreQuery = from m in _context.Orders orderby m.Id select m.Id;
 
             var orders = from m in _context.Orders select m;
@@ -51,7 +52,13 @@ namespace MvcMovie.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("OrderDate,Customer,Store,Item1,Item2,Item3")] Order order){
+        public IActionResult Create([Bind("OrderDate, Store, Item1, Item2, Item3, Customer")] Order order){
+            IQueryable<string> genreQuery = from m in _context.Stores orderby m.Name select m.Name;
+            var Locales = new OrderViewModel
+            {
+                Locales = new SelectList(genreQuery.Distinct().ToList())
+            };
+                     
             order.OrderDate = DateTime.Today;
             if (ModelState.IsValid)
             {
