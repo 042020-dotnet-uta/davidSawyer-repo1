@@ -44,9 +44,14 @@ namespace MvcMovie.Controllers
             }
             return View(movie);
         }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,OrderDate,Customer,Store,Item1,Item2,Item3")] Order order){
+        public IActionResult Create([Bind("OrderDate,Customer,Store,Item1,Item2,Item3")] Order order){
             order.OrderDate = DateTime.Today;
             if (ModelState.IsValid)
             {

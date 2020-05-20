@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using MvcMovie.Data;
 using MvcMovie.Models;
 using System;
@@ -12,12 +14,16 @@ namespace MvcMovie.Controllers
 {
     public class CustomerController : Controller
     {
+
         private readonly MvcMovieContext _context;
-        readonly List<Order> Orders = new List<Order>();
-        public CustomerController(MvcMovieContext context)
+        private readonly ILogger<CustomerController> _logger;
+        public CustomerController(MvcMovieContext context, ILogger<CustomerController> logger)
         {
             _context = context;
+            _logger = logger;
         }
+        readonly List<Order> Orders = new List<Order>();
+
         public async Task<IActionResult> Index(string searchString)
         {
 
@@ -37,20 +43,24 @@ namespace MvcMovie.Controllers
 
             return View(customerVM);
         }
-        [HttpPost]
-        public string Index(string searchString, bool notUsed)
+        /*[HttpPost]
+       public string Index(string searchString, bool notUsed)
+       {
+           return $"From [HttpPost] Index Action Method: filtered on the substring, {searchString}";
+       }
+              */
+        [HttpGet]
+        public IActionResult Add()
         {
-            return $"From [HttpPost] Index Action Method: filtered on the substring, {searchString}";
+            return View();
         }
-        /*        public IActionResult Add()
-                {
-                    return View();
-                }*/
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Add([Bind("Id,FirstName,LastName,Username,Password")] Customer customer)
+        public IActionResult Add([Bind("FirstName","LastName","Username","Password")] Customer customer)
         {
+            string Message = $"About page visited at {DateTime.UtcNow.ToLongTimeString()}";
+            _logger.LogInformation(Message);
             if (ModelState.IsValid)
             {
                 _context.Add(customer);
